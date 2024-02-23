@@ -5,6 +5,8 @@ import {
   forwardRef,
 } from 'react';
 
+import { create, props as styleProps } from '@stylexjs/stylex';
+
 export type ButtonProps = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
@@ -14,16 +16,33 @@ export type ButtonProps = DetailedHTMLProps<
   className?: string;
 };
 
+const styles = create({
+  base: {
+    padding: '10px 20px',
+  },
+  primary: {
+    backgroundColor: 'red',
+    color: 'white',
+  },
+  ghost: {
+    backgroundColor: {
+      default: 'transparent',
+      ':hover': 'lightgray',
+    },
+    color: 'black',
+    cursor: 'pointer',
+  },
+  success: {},
+  warning: {},
+  danger: {},
+});
+
 const Button = (
   { variant = 'primary', size = 'regular', className, ...props }: ButtonProps,
   ref: ForwardedRef<HTMLButtonElement>,
 ) => {
   return (
-    <button
-      {...props}
-      ref={ref}
-      className={`shadow hover:shadow-lg transition py-2.5 px-3 bg-emerald-500 text-white rounded ${className}`}
-    >
+    <button {...styleProps(styles.base, styles[variant])} {...props} ref={ref}>
       {props.children}
     </button>
   );

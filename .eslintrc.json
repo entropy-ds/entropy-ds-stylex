@@ -1,9 +1,10 @@
 {
-  "plugins": ["prettier", "jest"],
+  "plugins": ["prettier", "jest", "@stylexjs"],
   "extends": ["prettier", "plugin:jest/recommended", "plugin:storybook/recommended"],
   "parser": "@typescript-eslint/parser",
   "rules": {
-    "prettier/prettier": 2
+    "prettier/prettier": 2,
+    "@stylexjs/valid-styles": "error"
   },
   "env": {
     "jest/globals": true

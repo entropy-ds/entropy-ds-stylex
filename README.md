@@ -1,10 +1,10 @@
 ![entropy-ds-logo](entropy-ds-logo.svg)
 
-# Entropy DS - Tailwind
+# Entropy DS - Stylex
 
 **Start creating your design system instantly.**
 
-This is the Tailwind template of Entropy DS design systems bootstrapping tool.
+This is the Stylex template of Entropy DS design systems bootstrapping tool.
 
 ---
 

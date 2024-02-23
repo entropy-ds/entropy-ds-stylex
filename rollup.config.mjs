@@ -1,19 +1,27 @@
 import typescript from '@rollup/plugin-typescript';
 import esbuild from 'rollup-plugin-esbuild';
-import postcss from 'rollup-plugin-postcss';
-import autoprefixer from 'autoprefixer';
-import tailwindcss from 'tailwindcss';
-import tailwindConfig from './tailwind.config.js';
+import stylexPlugin from '@stylexjs/rollup-plugin';
 
 export default [
   {
     plugins: [
+      stylexPlugin({
+        fileName: "./dist/stylex.css",
+        // default: false
+        dev: false,
+        // prefix for all generated classNames
+        classNamePrefix: 'x',
+        // Required for CSS variable support
+        unstable_moduleResolution: {
+          // type: 'commonJS' | 'haste'
+          // default: 'commonJS'
+          type: 'commonJS',
+          // The absolute path to the root directory of your project
+          rootDir: __dirname,
+        },
+      }),
       typescript(),
       esbuild(),
-      postcss({
-        extensions: ['.css', 'module.css'],
-        plugins: [autoprefixer(), tailwindcss(tailwindConfig)],
-      }),
     ],
     input: ['./src/index.ts'],
     external: (id) => !/^[./]/.test(id),
